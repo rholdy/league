@@ -1,5 +1,45 @@
+<table id="summoners">
+  <thead>
+    <tr>
+      <td>Summoner Name</td>
+      <td>Level</td>
+      <td>Icon</td>
+      <td>Server</td>
+      <td>Friendly</td>
+      <td>Helpful</td>
+      <td>Teamwork</td>
+      <td>Opponent</td>
+      <td>Lifetime IP</td>
+      <td>Season One Rank</td>
+      <td>Season Two Rank</td>
+    </tr>
+  </thead>
+  <tbody>
 
+	    <tr>
+		    <td><%= @summoner.summoner_name %></td>
+		    <td><%= @summoner.summoner_level %></td>
+		    <td><%= @summoner.summoner_icon %></td>
+		    <td><%= @summoner.server %></td>
+		    <td><%= @summoner.honor_friendly %></td>
+		    <td><%= @summoner.honor_helpful %></td>
+		    <td><%= @summoner.honor_teamwork %></td>
+		    <td><%= @summoner.honor_opponent %></td>
+		    <td><%= @summoner.lifetime_ip %></td>
+		    <td><%= @summoner.season_one %></td>
+		    <td><%= @summoner.season_two %></td>
+	    </tr>
+  </tbody>
+</table>
 
+<script>
+  $('#summoners').dataTable({
+    "sPaginationType": "bootstrap"
+  });
+</script>
 
 <%= link_to 'Edit', edit_summoner_path(@summoner) %> |
 <%= link_to 'Back', summoners_path %>
+
+
+		
