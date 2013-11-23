@@ -3,7 +3,7 @@
 <p>Email: <%= @user.email if @user.email %></p>
 
   <fieldset>
-    <%= simple_form_for @summoner do |f| %>
+    <%= simple_form_for @summoner, remote: true do |f| %>
       <%= f.error_notification %>
         <%= f.input :summoner_name, placeholder: "Summoner Name Goes Here", label: false %>
         <ul class="button-group dabba">
