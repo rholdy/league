@@ -15,13 +15,16 @@
 
 
 <h3>Summoners: <h3>
-<div id="summoners">
-  <% if @user.summoners.empty? %>
-    <p class="empty_summoners"><%= link_to 'Create some summoners foo!', new_summoner_path() %> </p>
-  <% else %>  
-    <% @user.summoners.each do |summoner| %>
-        <p>Summoner: <%= link_to summoner.summoner_name, summoner %></p>
-       <%# raise @summoners %>
+  <div id="loading">
+    <p>LOADING</p>
+  </div>
+  <div id="summoners">
+    <% if @user.summoners.empty? %>
+      <p class="empty_summoners"><%= link_to 'Create some summoners foo!', new_summoner_path() %> </p>
+    <% else %>  
+      <% @user.summoners.each do |summoner| %>
+          <p>Summoner: <%= link_to summoner.summoner_name, summoner %></p>
+         <%# raise @summoners %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
