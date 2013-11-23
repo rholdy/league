@@ -38,8 +38,11 @@
   });
 </script>
 
-<%= link_to 'Edit', edit_summoner_path(@summoner) %> |
-<%= link_to 'Back', summoners_path %>
+<ul class="button-group">
+<li><%= link_to 'Edit', edit_summoner_path(@summoner), class: 'button' %></li>
+<li><%= link_to 'Back', summoners_path, class: 'button' %></li>
+<li><a href="#" class="button">Update Match History</a></li>
+</ul>
 
 
 		

@@ -10,5 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   has_many :summoners, dependent: :destroy
+  # validates :summoners, exclusion: { in: User.summoners.all,
+  #   message: "Can only add each summoner once." }
   
 end
