@@ -2,7 +2,7 @@ class SummonersController < ApplicationController
   # GET /summoners
   # GET /summoners.json
   def index
-    @summoners = Summoner.all
+    @summoners = current_user.summoners.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class SummonersController < ApplicationController
   # GET /summoners/1
   # GET /summoners/1.json
   def show
-    @summoner = Summoner.find(params[:id])
+    @summoner = current_user.summoners.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,7 @@ class SummonersController < ApplicationController
   # GET /summoners/new
   # GET /summoners/new.json
   def new
-    @summoner = Summoner.new
+    @summoner = current_user.summoners.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +34,17 @@ class SummonersController < ApplicationController
 
   # GET /summoners/1/edit
   def edit
-    @summoner = Summoner.find(params[:id])
+    @summoner = current_user.summoners.find(params[:id])
   end
 
   # POST /summoners
   # POST /summoners.json
   def create
-    @summoner = Summoner.new(params[:summoner])
+    @summoner = current_user.summoners.new(params[:summoner])
 
     respond_to do |format|
       if @summoner.save
-        format.html { redirect_to @summoner, notice: 'Summoner was successfully created.' }
+        format.html { redirect_to summoner_path(@summoner), notice: 'Summoner was successfully created.' }
         format.json { render json: @summoner, status: :created, location: @summoner }
       else
         format.html { render action: "new" }
@@ -56,7 +56,7 @@ class SummonersController < ApplicationController
   # PUT /summoners/1
   # PUT /summoners/1.json
   def update
-    @summoner = Summoner.find(params[:id])
+    @summoner = current_user.summoners.find(params[:id])
 
     respond_to do |format|
       if @summoner.update_attributes(params[:summoner])
@@ -72,7 +72,7 @@ class SummonersController < ApplicationController
   # DELETE /summoners/1
   # DELETE /summoners/1.json
   def destroy
-    @summoner = Summoner.find(params[:id])
+    @summoner = current_user.summoners.find(params[:id])
     @summoner.destroy
 
     respond_to do |format|
