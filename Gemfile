@@ -7,7 +7,9 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'font-awesome-sass'
 end
+
 gem 'jquery-rails'
 gem 'cancan'
 gem 'devise'
@@ -17,6 +19,7 @@ gem 'pg'
 gem 'rolify'
 gem 'simple_form'
 gem 'unicorn'
+
 group :development do
   gem 'better_errors'
   gem 'pry-rails'
@@ -31,10 +34,12 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
 end
+
 group :test do
   gem 'minitest-spec-rails'
   gem 'minitest-wscolor'

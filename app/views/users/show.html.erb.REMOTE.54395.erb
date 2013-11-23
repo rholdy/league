@@ -2,6 +2,7 @@
 <p>User: <%= @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
 
+<div id="summoner-form">
   <fieldset>
     <%= simple_form_for @summoner do |f| %>
       <%= f.error_notification %>
@@ -12,15 +13,8 @@
         </ul>
     <% end %>
   </fieldset>
-
-<h3>Summoners: <h3>
-<div id="summoners">
-  <% if @user.summoners.empty? %>
-    <p class="empty_summoners"><%= link_to 'Create some summoners foo!', new_summoner_path() %> </p>
-  <% else %>  
-    <% @user.summoners.each do |summoner| %>
-        <p>Summoner: <%= link_to summoner.summoner_name, summoner %></p>
-       <%# raise @summoners %>
-    <% end %>
-  <% end %>
 </div>
+
+<% @summoners.each do |summoner| %>
+  <p>Summoner: <%=link_to summoner.summoner_name, summoner %></p>
+<% end %>
