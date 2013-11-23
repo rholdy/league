@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131123165221) do
+ActiveRecord::Schema.define(:version => 20131123173421) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,26 @@ ActiveRecord::Schema.define(:version => 20131123165221) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "summoners", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "summoner_name"
+    t.string   "in_game_id"
+    t.string   "summoner_level"
+    t.string   "summoner_icon"
+    t.string   "server"
+    t.integer  "honor_friendly"
+    t.integer  "honor_helpful"
+    t.integer  "honor_teamwork"
+    t.integer  "honor_opponent"
+    t.integer  "lifetime_ip"
+    t.string   "season_one"
+    t.string   "season_two"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "summoners", ["user_id"], :name => "index_summoners_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

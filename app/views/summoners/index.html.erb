@@ -1,0 +1,21 @@
+<h1>Listing summoners</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @summoners.each do |summoner| %>
+  <tr>
+    <td><%= link_to 'Show', summoner %></td>
+    <td><%= link_to 'Edit', edit_summoner_path(summoner) %></td>
+    <td><%= link_to 'Destroy', summoner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Summoner', new_summoner_path %>
