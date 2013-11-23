@@ -52,6 +52,7 @@ class SummonersController < ApplicationController
     response = Unirest.get(search_string).body["data"]
 
     if response.present?
+      @summoner.account_id = response["accountId"]
       @summoner.in_game_id = response["summonerId"]
       @summoner.summoner_icon = response["icon"]
       @summoner.summoner_level = response["level"]
