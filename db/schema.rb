@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131123173421) do
+ActiveRecord::Schema.define(:version => 20131123234806) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20131123173421) do
     t.string   "season_two"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "account_id"
   end
 
   add_index "summoners", ["user_id"], :name => "index_summoners_on_user_id"
