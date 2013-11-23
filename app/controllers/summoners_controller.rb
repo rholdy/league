@@ -18,6 +18,7 @@ class SummonersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @summoner }
+      format.js
     end
   end
 
@@ -29,6 +30,7 @@ class SummonersController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @summoner }
+      format.js
     end
   end
 
@@ -46,6 +48,7 @@ class SummonersController < ApplicationController
       if @summoner.save
         format.html { redirect_to summoner_path(@summoner), notice: 'Summoner was successfully created.' }
         format.json { render json: @summoner, status: :created, location: @summoner }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @summoner.errors, status: :unprocessable_entity }
