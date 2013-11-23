@@ -16,9 +16,15 @@
 
 </div>
 
+
+<h3>Summoners: <h3>
 <div id="summoners">
-  <h3>Summoners: <h3>
-  <% @summoners.each do |summoner| %>
-      <p>Summoner: <%= link_to summoner.summoner_name, summoner %></p>
+  <% if @user.summoners.empty? %>
+    <p class="empty_summoners"><%= link_to 'Create some summoners foo!', new_summoner_path() %> </p>
+  <% else %>  
+    <% @user.summoners.each do |summoner| %>
+        <p>Summoner: <%= link_to summoner.summoner_name, summoner %></p>
+       <%# raise @summoners %>
+    <% end %>
   <% end %>
 </div>

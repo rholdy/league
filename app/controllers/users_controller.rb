@@ -8,8 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @summoners = current_user.summoners
-    @summoner = current_user.summoners.new
+    # @summoners = @user.summoners
+    @summoner = Summoner.new()
   end
   
   def update
