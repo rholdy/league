@@ -1,4 +1,5 @@
 class SummonersController < ApplicationController
+  before_filter :set_unirest_header
   # GET /summoners
   # GET /summoners.json
   def index
@@ -44,6 +45,24 @@ class SummonersController < ApplicationController
   def create
     @summoner = current_user.summoners.new(params[:summoner])
 
+    server = params[:summoner][:server].downcase
+
+    summoner_name = params[:summoner][:summoner_name]
+
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{summoner_name}"
+
+    response = Unirest.get(search_string).body["data"]
+
+    if response.present?
+      @summoner.in_game_id = response["summonerId"]
+
+      @summoner.summoner_icon = response["icon"]
+
+      @summoner.summoner_level = response["level"]
+    end
+
+
+
     respond_to do |format|
       if @summoner.save
         format.html { redirect_to summoner_path(@summoner), notice: 'Summoner was successfully created.' }
@@ -52,6 +71,7 @@ class SummonersController < ApplicationController
       else
         format.html { render action: "new" }
         format.json { render json: @summoner.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -82,5 +102,9 @@ class SummonersController < ApplicationController
       format.html { redirect_to summoners_url }
       format.json { head :no_content }
     end
+  end
+
+  def set_unirest_header
+    Unirest.default_header("X-Mashape-Authorization",ENV['MASHAPE_KEY'])
   end
 end
