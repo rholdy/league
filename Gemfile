@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '3.2.15'
+gem 'pry'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -17,9 +19,12 @@ gem 'simple_form'
 gem 'unicorn'
 group :development do
   gem 'better_errors'
+  gem 'pry-rails'
+  gem 'meta_request'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
   gem 'guard-rails'
+  gem 'xray-rails'
   gem 'hub', :require=>nil
   gem 'rails_layout'
   gem 'rb-fchange', :require=>false
@@ -28,6 +33,7 @@ group :development do
 end
 group :development, :test do
   gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 group :test do
   gem 'minitest-spec-rails'
