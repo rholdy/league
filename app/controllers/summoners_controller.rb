@@ -46,22 +46,41 @@ class SummonersController < ApplicationController
     @summoner = current_user.summoners.new(params[:summoner])
 
     server = params[:summoner][:server].downcase
-
     summoner_name = params[:summoner][:summoner_name]
 
     search_string = "https://teemojson.p.mashape.com/player/#{server}/#{summoner_name}"
-
     response = Unirest.get(search_string).body["data"]
 
     if response.present?
       @summoner.in_game_id = response["summonerId"]
-
       @summoner.summoner_icon = response["icon"]
-
       @summoner.summoner_level = response["level"]
     end
 
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{summoner_name}/honor"
+    response = Unirest.get(search_string).body["data"]
 
+    if response.present?
+      @summoner.honor_friendly = response["totals"][1]
+      @summoner.honor_helpful = response["totals"][2]
+      @summoner.honor_teamwork = response["totals"][3]
+      @summoner.honor_opponent = response["totals"][4]
+    end
+
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{summoner_name}/influence_points"
+    response = Unirest.get(search_string).body["data"]
+
+    if response.present?
+      @summoner.lifetime_ip = response
+    end
+
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{summoner_name}/past_seasons"
+    response = Unirest.get(search_string).body["data"]
+
+    if response.present?
+      @summoner.season_one = response["seasonOne"]
+      @summoner.season_two = response["seasonTwo"]
+    end
 
     respond_to do |format|
       if @summoner.save
